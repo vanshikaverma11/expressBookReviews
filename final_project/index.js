@@ -12,25 +12,27 @@ app.use("/customer",session({secret:"fingerprint_customer",resave: true, saveUni
 
 app.use("/customer/auth/*", function auth(req,res,next){
 //authenication mechanism here
-const token = req.session.authorization ? req.session.authorization.accessToken : null;
-
-if (!token) {
-  return res.status(403).json({ message: "User not authenticated. Please login first." });
-}
-
-jwt.verify(token, "access", (err, decoded) => {
-  if (err) {
-    return res.status(403).json({ message: "Invalid or expired token." });
+if (!req.session.authorization) {
+    return res.status(401).json({ message: "User not authenticated. Please login first." });
   }
-  req.user = decoded; // Store the decoded token data (user info)
-  next(); // Proceed to the next middleware or route
-});
+
+  const token = req.session.authorization.accessToken;
+  
+  // If there is a token in session, verify it
+  jwt.verify(token, 'access', (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Invalid or expired token" });
+    }
+
+    // If token is valid, attach user info to request object
+    req.user = user;
+    next(); // Continue to the next middleware or route handler
+  });s
 });
  
-const PORT =5000;
+const PORT =5001;
 
 app.use("/customer", customer_routes);
-app.use('/public', public_users);
 app.use("/", genl_routes);
 
 app.listen(PORT,()=>console.log("Server is running"));

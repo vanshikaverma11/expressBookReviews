@@ -6,14 +6,14 @@ const public_users = express.Router();
 
 
 public_users.post("/register", (req,res) => {
-  //Write your code here
+  //Write your code herez
   return res.status(300).json({message: "Yet to be implemented"});
 });
 
-// Get the book list available in the shop
+/// Get the book list available in the shop
 public_users.get('/', function (req, res) {
-  // Return the list of books available in the shop
-  res.json(JSON.stringify(books, null, 4)); // Format the output nicely using JSON.stringify with 4 spaces for indentation
+  // Use JSON.stringify to format the response neatly
+  res.status(200).json(JSON.stringify(books, null, 2));
 });
 
 // Get book details based on ISBN
