@@ -27,7 +27,7 @@ if (!req.session.authorization) {
     // If token is valid, attach user info to request object
     req.user = user;
     next(); // Continue to the next middleware or route handler
-  });s
+  });
 });
  
 const PORT =5003;
