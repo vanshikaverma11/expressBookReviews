@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 let books = require("./booksdb.js");
+const bcrypt = require('bcrypt');
 const regd_users = express.Router();
 
 let users = [
@@ -11,7 +12,7 @@ let users = [
   }
 ];
 
-const SECRET_KEY = process.env.SECRET_KEY || "b913ca1389001sfc576c38f139f257ed4294a06941d9763aa8d2b21e0b568846f4fbf6e0c40606da4cc1402e4357f7c72426c99e4d627cb801f50bcb04bf0e7a6"; // The secret key for JWT
+const SECRET_KEY = "b913ca1389001sfc576c38f139f257ed4294a06941d9763aa8d2b21e0b568846f4fbf6e0c40606da4cc1402e4357f7c72426c99e4d627cb801f50bcb04bf0e7a6"; // The secret key for JWT
 
 // Check if the username is valid
 const isValid = (username) => {
@@ -19,7 +20,7 @@ const isValid = (username) => {
 };
 
 // Check if the user credentials match
-const authenticatedUser = (username, password) => {
+const authenticatedUser = async (username, password) => {
   const user = users.find(user => user.username === username);
   return user && bcrypt.compareSync(password, user.password); // Check hashed password
 };
@@ -33,10 +34,12 @@ regd_users.post("/login", (req, res) => {
   }
 
   if (!isValid(username)) {
+    console.log("Register first");
     return res.status(404).json({ message: "Username does not exist. Register first." });
   }
 
   if (!authenticatedUser(username, password)) {
+    console.log("invaild");
     return res.status(401).json({ message: "Invalid password. Try again." });
   }
 

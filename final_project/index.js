@@ -31,7 +31,7 @@ if (!req.session.authorization) {
   });
 });
  
-const PORT =500;
+const PORT =5000;
 
 app.use("/customer", customer_routes);
 app.use("/", genl_routes);
