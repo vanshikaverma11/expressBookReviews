@@ -19,12 +19,18 @@ public_users.get('/', function (req, res) {
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
-  const isbn = req.params.isbn; // Extract ISBN from request parameters
+  // Retrieve the ISBN from request parameters
+  const isbn = req.params.isbn;
 
-  if (books[isbn]) {
-    res.status(200).json(books[isbn]); // Use status 200 for success
+  // Find the book with the matching ISBN
+  const book = Object.values(books).find(b => b.isbn === isbn);
+
+  // If the book is found, return the book details
+  if (book) {
+    res.status(200).json(book);
   } else {
-    res.status(404).json({ message: "Book not found" }); // Use status 404 for not found
+    // If the book is not found, return a "Book not found" message
+    res.status(404).json({ message: 'Book not found' });
   }
 });
 
