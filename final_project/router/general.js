@@ -14,17 +14,17 @@ public_users.post("/register", (req,res) => {
 public_users.get('/', function (req, res) {
   // Convert the 'books' object to an array and send it as a response
   const bookList = Object.values(books);  // Convert object to an array of book objects
-  res.status(300).json(bookList);  // Send the books as a JSON response
+  res.status(200).json(bookList);  // Send the books as a JSON response
 });
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
-  const isbn = req.params.isbn; // Extract ISBN from the request parameter
+  const isbn = req.params.isbn; // Extract ISBN from request parameters
 
   if (books[isbn]) {
-    res.status(200).json(books[isbn]); // Correct status code
+    res.status(200).json(books[isbn]); // Use status 200 for success
   } else {
-    res.status(404).json({ message: "Book not found" }); // Error message if ISBN not found
+    res.status(404).json({ message: "Book not found" }); // Use status 404 for not found
   }
 });
 
