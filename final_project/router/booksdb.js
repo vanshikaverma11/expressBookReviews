@@ -1,4 +1,5 @@
-let books = {
+// booksdb.js (CommonJS Syntax)
+const books = {
       1: { "isbn": "1234", "author": "Chinua Achebe", "title": "Things Fall Apart", "reviews": {} },
       2: { "isbn": "5678", "author": "Hans Christian Andersen", "title": "Fairy tales", "reviews": {} },
       3: { "isbn": "91011", "author": "Dante Alighieri", "title": "The Divine Comedy", "reviews": {} },
@@ -9,7 +10,7 @@ let books = {
       8: { "isbn": "242526", "author": "Jane Austen", "title": "Pride and Prejudice", "reviews": {} },
       9: { "isbn": "272829", "author": "Honoré de Balzac", "title": "Le Père Goriot", "reviews": {} },
       10: { "isbn": "303132", "author": "Samuel Beckett", "title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
-    };
-    
-    module.exports = books;
-    
+   };
+   
+   module.exports = books;
+   
