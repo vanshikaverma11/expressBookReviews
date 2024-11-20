@@ -5,7 +5,6 @@ let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
 
-// Register a new user
 public_users.post("/register", (req, res) => {
   // Extract the username and password from the request body
   const { username, password } = req.body;
@@ -27,8 +26,7 @@ public_users.post("/register", (req, res) => {
   return res.status(201).json({ message: "User successfully registered", user: { username } });
 });
 
-
-// Get the book list available in the shop
+/// Get the book list available in the shop
 public_users.get('/', function (req, res) {
   const bookList = books;  // Convert object to an array of book objects
   res.status(200).json(bookList);  // Send the books as a JSON response
@@ -92,7 +90,7 @@ public_users.get('/review/:isbn', function (req, res) {
   // Find the book with the matching ISBN
   const book = Object.values(books).find(b => b.isbn === isbn);
 
-  // If the book is found, check if it has reviews and return themq
+  // If the book is found, check if it has reviews and return them
   if (book) {
     // If the book has reviews, return them
     if (Object.keys(book.reviews).length > 0) {
