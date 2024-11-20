@@ -48,16 +48,46 @@ public_users.get('/author/:author', function (req, res) {
 });
 
 
-// Get all books based on title
-public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+// Get book details based on title
+public_users.get('/title/:title', function (req, res) {
+  // Retrieve the title from the request parameters
+  const title = req.params.title.toLowerCase();  // Convert to lowercase for case-insensitive matching
+  
+  // Find books whose title matches the provided title
+  const matchingBooks = Object.values(books).filter(b => b.title.toLowerCase().includes(title));
+
+  // If matching books are found, return them
+  if (matchingBooks.length > 0) {
+    res.status(200).json(matchingBooks);
+  } else {
+    // If no books match the title, return a message indicating that
+    res.status(404).json({ message: 'No books found with this title' });
+  }
 });
 
-//  Get book review
-public_users.get('/review/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+
+// Get book review based on ISBN
+public_users.get('/review/:isbn', function (req, res) {
+  // Retrieve the ISBN from the request parameters
+  const isbn = req.params.isbn;
+
+  // Find the book with the matching ISBN
+  const book = Object.values(books).find(b => b.isbn === isbn);
+
+  // If the book is found, check if it has reviews and return themq
+  if (book) {
+    // If the book has reviews, return them
+    if (Object.keys(book.reviews).length > 0) {
+      res.status(200).json(book.reviews);
+    } else {
+      // If no reviews are found, return a message indicating that
+      res.status(404).json({ message: 'No reviews available for this book' });
+    }
+  } else {
+    // If the book is not found, return a "Book not found" message
+    res.status(404).json({ message: 'Book not found' });
+  }
 });
+
 
 module.exports.general = public_users;

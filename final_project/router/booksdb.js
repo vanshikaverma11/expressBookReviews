@@ -1,6 +1,6 @@
 // booksdb.js (CommonJS Syntax)
 const books = {
-      1: { "isbn": "1234", "author": "Chinua Achebe", "title": "Things Fall Apart", "reviews": {} },
+      1: { "isbn": "1234", "author": "Chinua Achebe", "title": "Things Fall Apart", "reviews": { } },
       2: { "isbn": "5678", "author": "Hans Christian Andersen", "title": "Fairy tales", "reviews": {} },
       3: { "isbn": "91011", "author": "Dante Alighieri", "title": "The Divine Comedy", "reviews": {} },
       4: { "isbn": "121314", "author": "Unknown", "title": "The Epic Of Gilgamesh", "reviews": {} },
