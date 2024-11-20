@@ -12,8 +12,9 @@ public_users.post("/register", (req,res) => {
 
 /// Get the book list available in the shop
 public_users.get('/', function (req, res) {
-  // Use JSON.stringify to format the response neatly
-  res.status(300).json(JSON.stringify(books, null, 2));
+  // Convert the 'books' object to an array and send it as a response
+  const bookList = Object.values(books);  // Convert object to an array of book objects
+  res.status(300).json(bookList);  // Send the books as a JSON response
 });
 
 // Get book details based on ISBN
