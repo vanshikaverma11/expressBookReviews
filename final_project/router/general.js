@@ -88,7 +88,7 @@ public_users.get('/review/:isbn', function (req, res) {
   const isbn = req.params.isbn;
 
   // Find the book with the matching ISBN
-  const book = Object.values(books).find(b => b.isbn === isbn);
+  const book = (books).find(b => b.isbn === isbn);
 
   // If the book is found, check if it has reviews and return them
   if (book) {

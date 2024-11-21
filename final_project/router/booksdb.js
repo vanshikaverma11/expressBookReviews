@@ -9,7 +9,10 @@ const books = {
       7: { "isbn": "212223", "author": "Unknown", "title": "Njál's Saga", "reviews": {} },
       8: { "isbn": "242526", "author": "Jane Austen", "title": "Pride and Prejudice", "reviews": {} },
       9: { "isbn": "272829", "author": "Honoré de Balzac", "title": "Le Père Goriot", "reviews": {} },
-      10: { "isbn": "303132", "author": "Samuel Beckett", "title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
+      10: { "isbn": "303132", "author": "Samuel Beckett", "title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} },
+      11: {  "isbn": "1234567890", "title": "Some Book", "author": "Author Name",
+            "reviews": {
+            }}
    };
    
    module.exports = books;
